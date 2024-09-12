@@ -17,7 +17,7 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         {
             var categoryList = await _client.GetFromJsonAsync<List<ResultContactCategoryDto>>("contactCategories");
 
-            List<SelectListItem> categories = (from x in categoryList//update adında zaten var diyordu dün gece
+            List<SelectListItem> categories = (from x in categoryList
                                                select new SelectListItem
                                                {
                                                    Text = x.Name,
@@ -41,7 +41,6 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateContact()
         {
-            await CategoryDropdown();
             return View();
         }
 
