@@ -11,6 +11,7 @@ https://github.com/user-attachments/assets/b369e6c3-fb43-4d18-a157-cc49de7e8dcb
 
 [Blog_Page.mp4](https://github.com/user-attachments/assets/f2ab363e-ab1d-4856-8056-fe51cef1d279)
 
+[Contact_Page.webm](https://github.com/user-attachments/assets/3694e4ca-86dd-417d-aa26-a581ace20e1c)
 
 
 
