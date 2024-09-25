@@ -13,6 +13,7 @@ https://github.com/user-attachments/assets/b369e6c3-fb43-4d18-a157-cc49de7e8dcb
 
 [Contact_Page.webm](https://github.com/user-attachments/assets/85b18055-237d-4bb9-ab95-1e6fc5eec478)
 
+[CourseCategory_Page.webm](https://github.com/user-attachments/assets/bda9d887-13e0-479a-b6e6-10d0ea68d641)
 
 
 
