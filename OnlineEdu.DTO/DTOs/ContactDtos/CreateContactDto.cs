@@ -8,8 +8,6 @@ namespace OnlineEdu.DTO.DTOs.ContactDtos
 {
     public class CreateContactDto
     {
-        public int ContactId { get; set; }
-
         public string MapUrl { get; set; }
 
         public string Address { get; set; }

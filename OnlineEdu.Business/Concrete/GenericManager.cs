@@ -9,51 +9,51 @@ using System.Threading.Tasks;
 
 namespace OnlineEdu.Business.Concrete
 {
-    public class GenericManager<T>(IRepository<T> repository) : IGenericService<T> where T : class
+    public class GenericManager<T>(IRepository<T> _repository) : IGenericService<T> where T : class
     {
         public int TCount()
         {
-            return repository.Count();
+            return _repository.Count();
         }
 
         public void TCreate(T entity)
         {
-            repository.Create(entity);
+            _repository.Create(entity);
         }
 
         public void TDelete(int id)
         {
-            repository.Delete(id);
+            _repository.Delete(id);
         }
 
         public int TFilteredCount(Expression<Func<T, bool>> predicate)
         {
-            return repository.FilteredCount(predicate);
+            return _repository.FilteredCount(predicate);
         }
 
         public T TGetByFilter(Expression<Func<T, bool>> predicate)
         {
-            return repository.GetByFilter(predicate);           
+            return _repository.GetByFilter(predicate);           
         }
 
         public T TGetById(int id)
         {
-            return repository.GetById(id);
+            return _repository.GetById(id);
         }
 
         public List<T> TGetFilteredList(Expression<Func<T, bool>> predicate)
         {
-            return repository.GetFilteredList(predicate);
+            return _repository.GetFilteredList(predicate);
         }
 
         public List<T> TGetList()
         {
-           return repository.GetList();
+           return _repository.GetList();
         }
 
         public void TUpdate(T entity)
         {
-            repository.Update(entity);
+            _repository.Update(entity);
         }
     }
 }

@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OnlineEdu.DataAccesss\OnlineEdu.DataAccess.csproj" />
     <ProjectReference Include="..\OnlineEdu.Entity\OnlineEdu.Entity.csproj" />
   </ItemGroup>
 

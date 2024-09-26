@@ -1,6 +1,10 @@
-
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+using OnlineEdu.Entity.Entities;
+using OnlineEdu.WebUI.Validators;
 using OnlineEdu.WebUI.Areas.Admin.Controllers;
 using System.Reflection;
+using OnlineEdu.DataAccess.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient();
 
-
+builder.Services.AddDbContext<OnlineEduContext>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
+});
 
 builder.Services.AddControllersWithViews();
 

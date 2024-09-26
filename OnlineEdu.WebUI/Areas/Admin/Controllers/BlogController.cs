@@ -18,7 +18,7 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         {
             var categoryList = await _client.GetFromJsonAsync<List<ResultBlogCategoryDto>>("blogCategories");
 
-            List<SelectListItem> categories = (from x in categoryList//update adında zaten var diyordu dün gece
+            List<SelectListItem> categories = (from x in categoryList
                                                select new SelectListItem
                                                {
                                                   Text = x.Name,
@@ -57,7 +57,7 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateBlog(int id)
         {
             await CategoryDropdown();
-            var value = await _client.GetFromJsonAsync<UpdateBlogDto>("blogs" + id);
+            var value = await _client.GetFromJsonAsync<UpdateBlogDto>("blogs/" + id);
             return View(value);
         }
 
