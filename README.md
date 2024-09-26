@@ -17,4 +17,5 @@ https://github.com/user-attachments/assets/b369e6c3-fb43-4d18-a157-cc49de7e8dcb
 
 [Course_Page.webm](https://github.com/user-attachments/assets/f439b620-0bf4-427e-af41-90f18bfdd954)
 
+[Message_Page.webm](https://github.com/user-attachments/assets/01917996-7452-4e1d-be34-57b0256b883a)
 
