@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineEdu.WebUI.DTOs.BannerDtos;
+using OnlineEdu.WebUI.DTOs.CourseDtos;
 using OnlineEdu.WebUI.Helpers;
+using System.Collections.Generic;
 
 namespace OnlineEdu.WebUI.ViewComponents.Home
 {
-    public class _HomeBannerComponent : ViewComponent
+    public class _HomeCourseComponent : ViewComponent
     {
         private readonly HttpClient _client = HttpClientInstance.CreateClient();
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var values = await _client.GetFromJsonAsync<List<ResultBannerDto>>("banners");
+            var values = await _client.GetFromJsonAsync<List<ResultCourseDto>>("courses/GetActiveCourses");
             return View(values);
         }
     }

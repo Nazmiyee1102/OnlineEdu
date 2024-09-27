@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OnlineEdu.Entity.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace OnlineEdu.DataAccess.Context
 {
-    public class OnlineEduContext : DbContext
+    public class OnlineEduContext : IdentityDbContext<AppUser, AppRole,int>
     {
-
-
 
         public OnlineEduContext(DbContextOptions options) : base(options) 
         {
@@ -39,5 +38,8 @@ namespace OnlineEdu.DataAccess.Context
         public DbSet<Subscriber> Subscribers { get; set; }
 
         public DbSet<Testimonial> Testimonials { get; set; }
+
+        public DbSet<CourseRegister> CourseRegisters { get; set; }
+
     }
 }

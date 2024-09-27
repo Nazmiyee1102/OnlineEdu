@@ -28,13 +28,13 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var values = await _client.GetFromJsonAsync<List<ResultCourseDto>>("courses");
+            var values = await _client.GetFromJsonAsync<List<ResultCourseDto>>("Courses");
             return View(values);
         }
 
         public async Task<IActionResult> DeleteCourse(int id)
         {
-            await _client.DeleteAsync("courses/" + id);
+            await _client.DeleteAsync("Courses/" + id);
             return RedirectToAction("Index");
         }
 
@@ -48,7 +48,7 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCourse(CreateCourseDto createCourseDto)
         {
-            await _client.PostAsJsonAsync("courses", createCourseDto);
+            await _client.PostAsJsonAsync("Courses", createCourseDto);
             return RedirectToAction("Index");
         }
 
@@ -56,14 +56,14 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateCourse(int id)
         {
             await CourseCategoryDropdown();
-            var value = await _client.GetFromJsonAsync<UpdateCourseDto>("courses/" + id);
+            var value = await _client.GetFromJsonAsync<UpdateCourseDto>("Courses/" + id);
             return View(value);
         }
 
         [HttpPost]
         public async Task<IActionResult> UpdateCourse(UpdateCourseDto updateCourseDto)
         {
-            await _client.PutAsJsonAsync("courses", updateCourseDto);
+            await _client.PutAsJsonAsync("Courses", updateCourseDto);
             return RedirectToAction("Index");
         }
 
