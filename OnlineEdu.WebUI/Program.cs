@@ -5,12 +5,21 @@ using OnlineEdu.WebUI.Validators;
 using OnlineEdu.WebUI.Areas.Admin.Controllers;
 using System.Reflection;
 using OnlineEdu.DataAccess.Context;
+using OnlineEdu.WebUI.Services.UserDtos;
+using OnlineEdu.WebUI.Services.UserServices;
+using OnlineEdu.WebUI.Services.RoleServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<OnlineEduContext>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+
+
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<OnlineEduContext>
+    ().AddErrorDescriber<CustomErrorDescriber>();
 builder.Services.AddHttpClient();
 
 builder.Services.AddDbContext<OnlineEduContext>(opt =>
@@ -18,6 +27,11 @@ builder.Services.AddDbContext<OnlineEduContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
 });
 
+builder.Services.ConfigureApplicationCookie(cfg =>
+{
+    cfg.LoginPath = "/Login/SignIn";
+    cfg.LogoutPath = "/Login/Logout";
+});
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -34,19 +48,18 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
+
+    app.MapControllerRoute(
       name: "areas",
       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
     );
-});
+
 
 app.Run();
