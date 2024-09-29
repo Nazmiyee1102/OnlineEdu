@@ -66,7 +66,7 @@ namespace OnlineEdu.API.Controllers
         [HttpGet("GetActiveCategories")]
         public IActionResult GetActiveCategories()
         {
-            var values = _courseCategoryService.TGetFilteredList(x => x.IsShown == true);
+            var values = _courseCategoryService.TGetCoursesByTeacherId(x => x.IsShown == true);
             return Ok(values);
         }
     }

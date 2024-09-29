@@ -41,7 +41,7 @@ namespace OnlineEdu.Business.Concrete
             return _repository.GetById(id);
         }
 
-        public List<T> TGetFilteredList(Expression<Func<T, bool>> predicate)
+        public List<T> TGetCoursesByTeacherId(Expression<Func<T, bool>> predicate)
         {
             return _repository.GetFilteredList(predicate);
         }
