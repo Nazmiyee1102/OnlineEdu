@@ -4,32 +4,44 @@
     Layout = "~/Areas/Teacher/Views/TeacherLayout/Index.cshtml";
 }
 
+
 @{
     int count = 0;
 }
 <table class="table table-hover">
+
     <tr>
+
         <th>#</th>
         <th>Resim</th>
         <th>Kurs Adı</th>
         <th>Fiyat</th>
         <th>Kategori</th>
+
+
         <th></th>
-        <td>Ana Sayfada</td>
+
+
     </tr>
+
     @foreach (var item in Model)
     {
         count++;
         <tr>
             <th>@count</th>
-            <td><img src="@item.ImageUrl" style="height:75px; width:75px;" /></td>
+            <th><img src="@item.ImageUrl" style="height:75px;width:75px" /></th>
             <td>@item.CourseName</td>
             <td>@item.Price ₺</td>
             <td>@item.CourseCategory.Name</td>
+
             <td>
-                <button onClick="deleteTeacherCourse(@item.CourseId)" class="btn btn-outline-danger">Sil</button>
+                <button onclick="deleteTeacherCourse(@item.CourseId)" class="btn btn-outline-danger">Sil</button>
                 <a asp-action="UpdateCourse" asp-controller="MyCourse" asp-area="Teacher" asp-route-id="@item.CourseId" class="btn btn-outline-info">Güncelle</a>
+
+
+
             </td>
+
         </tr>
     }
 </table>
@@ -37,10 +49,12 @@
 <br />
 <a asp-action="CreateCourse" asp-controller="MyCourse" asp-area="Teacher" class="btn btn-outline-primary">Yeni Kurs Ekle</a>
 
-
 <script>
 
     function deleteTeacherCourse(id) {
+
+
+
         Swal.fire({
             title: "Silmek istediğinize emin misiniz?",
             text: "Bu işlemi geri alamazsınız!",
@@ -49,15 +63,16 @@
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Evet, Sil!",
-            cancelButtonText: "İptal!"
+            cancelButtonText: "İptal"
         }).then((result) => {
             if (result.isConfirmed) {
 
                 window.location.href = "/Teacher/MyCourse/DeleteCourse/" + id;
+
             }
         });
-    }
 
+    }
 
 </script>
 

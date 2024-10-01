@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineEdu.DataAccess.Context;
 
@@ -11,9 +12,11 @@ using OnlineEdu.DataAccess.Context;
 namespace OnlineEdu.DataAccess.Migrations
 {
     [DbContext(typeof(OnlineEduContext))]
-    partial class OnlineEduContextModelSnapshot : ModelSnapshot
+    [Migration("20240930203907_mig_relation_between_blog_and_appuser")]
+    partial class mig_relation_between_blog_and_appuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -542,36 +545,6 @@ namespace OnlineEdu.DataAccess.Migrations
                     b.ToTable("Subscribers");
                 });
 
-            modelBuilder.Entity("OnlineEdu.Entity.Entities.TeacherSocial", b =>
-                {
-                    b.Property<int>("TeacherSocialId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeacherSocialId"));
-
-                    b.Property<string>("Icon")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SocialMediaName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TeacherSocialId");
-
-                    b.HasIndex("TeacherId");
-
-                    b.ToTable("TeacherSocials");
-                });
-
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Testimonial", b =>
                 {
                     b.Property<int>("TestimonialId")
@@ -708,17 +681,6 @@ namespace OnlineEdu.DataAccess.Migrations
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("OnlineEdu.Entity.Entities.TeacherSocial", b =>
-                {
-                    b.HasOne("OnlineEdu.Entity.Entities.AppUser", "Teacher")
-                        .WithMany("TeacherSocials")
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Teacher");
-                });
-
             modelBuilder.Entity("OnlineEdu.Entity.Entities.AppUser", b =>
                 {
                     b.Navigation("Blogs");
@@ -726,8 +688,6 @@ namespace OnlineEdu.DataAccess.Migrations
                     b.Navigation("CourseRegisters");
 
                     b.Navigation("Courses");
-
-                    b.Navigation("TeacherSocials");
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.BlogCategory", b =>

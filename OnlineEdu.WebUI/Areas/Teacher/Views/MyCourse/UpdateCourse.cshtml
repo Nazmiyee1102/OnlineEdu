@@ -1,12 +1,13 @@
-﻿@model CreateCourseDto
+﻿@model UpdateCourseDto
 @{
-    ViewData["Title"] = "Yeni Kurs Oluşturma Sayfası";
+    ViewData["Title"] = "Kurs Güncelleme Sayfası ";
     Layout = "~/Areas/Teacher/Views/TeacherLayout/Index.cshtml";
 }
 
 <form method="post">
+    <input type="hidden" asp-for="CourseId" />
     <label>Kurs Adı</label>
-    <input type="text" asp-for="CourseName" class="form-control"/>
+    <input type="text" asp-for="CourseName" class="form-control" />
     <br />
     <label>Kurs Resmi</label>
     <input type="text" asp-for="ImageUrl" class="form-control" />
@@ -19,5 +20,6 @@
     <label>Kurs Fiyatı</label>
     <input type="number" asp-for="Price" class="form-control" />
     <br />
-    <button class="btn btn-outline-primary">Kaydet</button>
+    <button class="btn btn-outline-primary">Güncelle</button>
 </form>
+

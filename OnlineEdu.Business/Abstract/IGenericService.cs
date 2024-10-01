@@ -25,6 +25,6 @@ namespace OnlineEdu.Business.Abstract
 
         int TFilteredCount(Expression<Func<T, bool>> predicate);
 
-        List<T> TGetCoursesByTeacherId(Expression<Func<T, bool>> predicate);
+        List<T> TGetFilteredList(Expression<Func<T, bool>> predicate);
     }
 }
