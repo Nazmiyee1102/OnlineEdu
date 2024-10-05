@@ -12,7 +12,7 @@ namespace OnlineEdu.DataAccess.Concrete
 {
     public class CourseCategoryRepository : GenericRepository<CourseCategory>, ICourseCategoryRepository
     {
-        public CourseCategoryRepository(OnlineEduContext context) : base(context)
+        public CourseCategoryRepository(OnlineEduContext _context) : base(_context)
         {
         }
 

@@ -6,13 +6,13 @@ namespace OnlineEdu.WebUI.Controllers
 {
     public class LoginController(IUserService userService) : Controller
     {
-        public IActionResult SingIn()
+        public IActionResult SignIn()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> SingIn(UserLoginDto userLoginDto) 
+        public async Task<IActionResult> SignIn(UserLoginDto userLoginDto) 
         { 
             var userRole = await userService.LoginAsync(userLoginDto);
 
