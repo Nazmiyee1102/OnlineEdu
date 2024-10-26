@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.RoleDtos;
+using OnlineEdu.WebUI.DTOs.UserDtos;
 
 namespace OnlineEdu.WebUI.Mappings
 {
@@ -11,6 +12,8 @@ namespace OnlineEdu.WebUI.Mappings
             CreateMap<AppRole, ResultRoleDto>().ReverseMap();
             CreateMap<AppRole, CreateRoleDto>().ReverseMap();
             CreateMap<AppRole, UpdateRoleDto>().ReverseMap();
+            CreateMap<AppUser, ResultUserDto>().ReverseMap();
+
         }
     }
 }

@@ -18,6 +18,8 @@ namespace OnlineEdu.WebUI.Services.UserDtos
 
         Task<List<AppUser>> GetAllUserAsync();
 
+        Task<List<ResultUserDto>> Get4Teachers();
+
         Task<AppUser> GetUserByIdAsync(int id);
     }
 }

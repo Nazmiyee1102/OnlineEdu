@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.TeacherSocialDtos;
@@ -7,7 +8,8 @@ using OnlineEdu.WebUI.Helpers;
 namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
 {
     [Area("Teacher")]
-    public class MyTeacherSocialController(UserManager<AppUser> _userManager) : Controller
+    [Authorize(Roles = "Teacher")]
+    public class MySocialMediaController(UserManager<AppUser> _userManager) : Controller
     {
         private readonly HttpClient _client = HttpClientInstance.CreateClient();
         
