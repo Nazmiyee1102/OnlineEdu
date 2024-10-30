@@ -30,5 +30,10 @@ namespace OnlineEdu.DataAccess.Concrete
         {
             return _blogRepository.GetBlogsWithCategoriesByWriterId(id);
         }
+
+        public List<Blog> TGetLast4BlogsWithCategories()
+        {
+            return _blogRepository.GetLast4BlogsWithCategories();
+        }
     }
 }

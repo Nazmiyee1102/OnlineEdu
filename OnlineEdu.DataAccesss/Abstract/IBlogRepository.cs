@@ -11,6 +11,8 @@ namespace OnlineEdu.DataAccess.Abstract
     {
         List<Blog> GetBlogsWithCategories();
 
+        List<Blog> GetLast4BlogsWithCategories();
+
         List<Blog> GetBlogsWithCategoriesByWriterId(int id);
 
 
