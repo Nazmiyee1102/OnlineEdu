@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineEdu.WebUI.Services.UserDtos;
+using OnlineEdu.WebUI.Services.UserServices;
 
 namespace OnlineEdu.WebUI.ViewComponents.Home
 {

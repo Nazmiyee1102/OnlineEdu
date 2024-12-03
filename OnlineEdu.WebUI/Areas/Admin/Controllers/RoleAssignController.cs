@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.UserDtos;
-using OnlineEdu.WebUI.Services.UserDtos;
+using OnlineEdu.WebUI.Services.UserServices;
 
 namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 {

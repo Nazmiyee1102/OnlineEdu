@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.UserDtos;
-using OnlineEdu.WebUI.Services.UserDtos;
+using OnlineEdu.WebUI.Services.UserServices;
 
 namespace OnlineEdu.WebUI.Services.UserServices
 {
@@ -22,19 +22,19 @@ namespace OnlineEdu.WebUI.Services.UserServices
 
         public async Task<IdentityResult> CreateUserAsync(UserRegisterDto userRegisterDto)
         {
-            var user = new AppUser 
-            { 
-                FirstName = userRegisterDto.FirstName, 
+            var user = new AppUser
+            {
+                FirstName = userRegisterDto.FirstName,
                 LastName = userRegisterDto.LastName,
                 UserName = userRegisterDto.UserName,
-                Email = userRegisterDto.Email 
+                Email = userRegisterDto.Email
             };
             if (userRegisterDto.Password != userRegisterDto.ConfirmPassword)
             {
                 return new IdentityResult();
             }
             var result = await userManager.CreateAsync(user, userRegisterDto.Password);
-            if (result.Succeeded) 
+            if (result.Succeeded)
             {
                 await userManager.AddToRoleAsync(user, "Student");
                 return result;
@@ -44,15 +44,26 @@ namespace OnlineEdu.WebUI.Services.UserServices
 
         public async Task<List<ResultUserDto>> Get4Teachers()
         {
-            var teacherList = await userManager.GetUsersInRoleAsync("Teacher");
-           // var teacherSocials = teacherList.Where(x=>x.TeacherSocials.Any()).ToList();
-            var values = teacherList.Take(4).ToList();
-            return mapper.Map<List<ResultUserDto>>(teacherList);
+            //var teacherList = await userManager.GetUsersInRoleAsync("Teacher");
+            //// var teacherSocials = teacherList.Where(x=>x.TeacherSocials.Any()).ToList();
+            //var values = teacherList.Take(4).ToList();
+            //return mapper.Map<List<ResultUserDto>>(teacherList);
+
+            var users = await userManager.Users.Include(x=>x.TeacherSocials).ToListAsync();
+             var teachers = users.Where(user =>userManager.IsInRoleAsync(user,"Teacher").Wait(2000)).OrderByDescending(x=>x.Id).Take(4).ToList();
+            return mapper.Map<List<ResultUserDto>>(teachers);
+
         }
 
         public async Task<List<AppUser>> GetAllUserAsync()
         {
             return await userManager.Users.ToListAsync();
+        }
+
+        public async Task<int> GetTeacherCount()
+        {
+            var teachers = await userManager.GetUsersInRoleAsync("Teacher");
+            return teachers.Count();
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)

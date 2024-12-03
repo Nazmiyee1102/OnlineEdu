@@ -2,7 +2,7 @@
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.UserDtos;
 
-namespace OnlineEdu.WebUI.Services.UserDtos
+namespace OnlineEdu.WebUI.Services.UserServices
 {
     public interface IUserService
     {
@@ -21,5 +21,7 @@ namespace OnlineEdu.WebUI.Services.UserDtos
         Task<List<ResultUserDto>> Get4Teachers();
 
         Task<AppUser> GetUserByIdAsync(int id);
+
+        Task<int> GetTeacherCount();
     }
 }

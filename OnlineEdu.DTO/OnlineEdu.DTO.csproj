@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineEdu.Entity\OnlineEdu.Entity.csproj" />
+    <ProjectReference Include="..\OnlineEdu.WebUI\OnlineEdu.WebUI.csproj" />
   </ItemGroup>
 
 </Project>
