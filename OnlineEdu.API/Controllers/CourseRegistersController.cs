@@ -41,7 +41,7 @@ namespace OnlineEdu.API.Controllers
         public IActionResult GetById(int id)
         {
             var value = _courseRegisterService.TGetById(id);
-            var mappedValue = _mapper.Map<List<ResultCourseRegisterDto>>(value);
+            var mappedValue = _mapper.Map<ResultCourseRegisterDto>(value);
             return Ok(mappedValue);
         }
 

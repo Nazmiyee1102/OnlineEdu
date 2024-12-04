@@ -16,6 +16,7 @@ namespace OnlineEdu.Business.Concrete
 
         public CourseRegisterManager(IRepository<CourseRegister> _repository, ICourseRegisterRepository courseRegisterRepository) : base(_repository)
         {
+            _courseRegisterRepository = courseRegisterRepository;
         }
 
         public List<CourseRegister> TGetAllWithCourseAndCategory(Expression<Func<CourseRegister, bool>> filter)
