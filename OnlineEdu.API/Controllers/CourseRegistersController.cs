@@ -15,9 +15,8 @@ namespace OnlineEdu.API.Controllers
         [HttpGet("GetMyCourses/{userId}")]
         public IActionResult GetMyCourses(int userId)
         {
-            var values = _courseRegisterService.TGetAllWithCourseAndCategory(x=>x.AppUserId == userId);
+            var values = _courseRegisterService.TGetAllWithCourseAndCategory(x => x.AppUserId == userId);
             var mappedValues = _mapper.Map<List<ResultCourseRegisterDto>>(values);
-
             return Ok(mappedValues);
         }
 
