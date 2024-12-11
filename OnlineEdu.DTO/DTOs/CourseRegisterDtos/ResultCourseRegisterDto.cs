@@ -1,5 +1,5 @@
-﻿using OnlineEdu.Entity.Entities;
-using OnlineEdu.WebUI.DTOs.CourseDtos;
+﻿using OnlineEdu.DTO.DTOs.CourseDtos;
+using OnlineEdu.Entity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,6 @@ namespace OnlineEdu.DTO.DTOs.CourseRegisterDtos
         public int CourseRegisterId { get; set; }
 
         public int AppUserId { get; set; }
-
         public AppUser AppUser { get; set; }
 
         public int CourseId { get; set; }

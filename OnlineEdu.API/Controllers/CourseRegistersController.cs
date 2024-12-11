@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using OnlineEdu.Business.Abstract;
 using OnlineEdu.DTO.DTOs.CourseRegisterDtos;
 using OnlineEdu.Entity.Entities;
@@ -29,11 +28,11 @@ namespace OnlineEdu.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateCourseRegister(UpdateCourseRegisterDto model) 
+        public IActionResult UpdateCourseRegister(UpdateCourseRegisterDto model)
         {
             var updateModel = _mapper.Map<CourseRegister>(model);
             _courseRegisterService.TUpdate(updateModel);
-            return Ok("Güncelleme Başarılı");
+            return Ok("Kurs Kaydı Güncellendi");
         }
 
         [HttpGet("{id}")]
@@ -47,7 +46,7 @@ namespace OnlineEdu.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteCourseRegister(int id)
         {
-           _courseRegisterService.TDelete(id);
+            _courseRegisterService.TDelete(id);
             return Ok("Kurs Kaydı Silindi");
         }
     }
