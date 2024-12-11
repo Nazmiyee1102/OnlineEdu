@@ -27,7 +27,19 @@ namespace OnlineEdu.DataAccess.Concrete
 
         public List<Course> GetAllCoursesWithCategories()
         {
-            return _context.Courses.Include(x=>x.CourseCategory).ToList();  
+            return _context.Courses.Include(x => x.CourseCategory).Include(x => x.AppUser).ToList();
+        }
+
+        public List<Course> GetAllCoursesWithCategories(Expression<Func<Course, bool>> filter = null)
+        {
+            IQueryable<Course> values = _context.Courses.Include(x => x.CourseCategory).
+                Include(x => x.AppUser).
+                AsQueryable();//IQuaryable sayesinde içerisinde sorgulama yapılabilen bir liste haline geldi
+            if (filter != null)
+            {
+                values = values.Where(filter);
+            }
+            return values.ToList();
         }
 
         public List<Course> GetCoursesByTeacherId(int id)
