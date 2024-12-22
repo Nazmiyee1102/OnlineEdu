@@ -1,8 +1,6 @@
 
 ----- UI -----
 
-- Hakkýmýzda ayrý sayfada görüntüleme
-- Tüm bloglar sayfasý
 - Blog detayý görüntüleme
 - Footer' da subscribe alaný
 - Footer' da social media alaný
