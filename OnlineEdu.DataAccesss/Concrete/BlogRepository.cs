@@ -18,6 +18,11 @@ namespace OnlineEdu.DataAccess.Concrete
             
         }
 
+        public List<Blog> GetBlogsByCategoryId(int id)
+        {
+            return _context.Blogs.Include(x => x.BlogCategory).Include(x=>x.Writer).Where(x => x.BlogCategoryId == id).ToList();
+        }
+
         public List<Blog> GetBlogsWithCategories()
         {
             return _context.Blogs.Include(x => x.BlogCategory).Include(x=>x.Writer).ToList();

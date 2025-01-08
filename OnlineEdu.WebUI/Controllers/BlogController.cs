@@ -25,5 +25,12 @@ namespace OnlineEdu.WebUI.Controllers
             var blog = await _client.GetFromJsonAsync<ResultBlogDto>("blogs/" + id);
             return View(blog);
         }
+
+        public async Task<IActionResult> BlogsByCategory(int id)
+        {
+            var blogs = await _client.GetFromJsonAsync<List<ResultBlogDto>>("blogs/GetBlogsByCategoryId/" + id);
+            ViewBag.categoryName = blogs.Select(x=>x.BlogCategory.Name).FirstOrDefault();
+            return View(blogs);
+        }
     }
 }

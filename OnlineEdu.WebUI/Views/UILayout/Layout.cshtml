@@ -125,16 +125,17 @@
                         <div class="row justify-content-between">
                             <div class="col-xl-6 col-lg-7 col-md-10">
                                 <div class="footer-tittle2">
-                                    <h4>Stay Updated</h4>
+                                    <h4>Bültenimize Abone Olun</h4>
                                 </div>
                                 <!-- Form -->
                                 <div class="footer-form mb-50">
                                     <div id="mc_embed_signup">
-                                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative mail_part" novalidate="true">
-                                            <input type="email" name="EMAIL" id="newsletter-form-email" placeholder=" Email Address " class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'">
+                                        <form asp-action="Subscribe" asp-controller="Blog" method="post" class="subscribe_form relative mail_part" >
+                                            <input type="email" name="Email" placeholder=" Email Adresinizi Yazın " class="form-control" onfocus="this.placeholder = ''"
+                                                   onblur="this.placeholder = 'Emailinizi Giriniz'" required>
                                             <div class="form-icon">
-                                                <button type="submit" name="submit" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm">
-                                                    Subscribe Now
+                                                <button onclick="subscribe()" type="submit" class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn">
+                                                    Abone Ol
                                                 </button>
                                             </div>
                                             <div class="mt-10 info"></div>
@@ -265,6 +266,43 @@
     <script src="~/onlineedu-master/assets/js/plugins.js"></script>
     <script src="~/onlineedu-master/assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            if (email === "") {
+                Swal.fire({
+                    title: "Hata",
+                    text: "Lütfen email adresinizi giriniz.",
+                    icon: "error",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "Tamam"
+                });
+                return false; // Formun submit edilmesini engeller
+            } else {
+                subscribe();
+                return true; // Formun submit edilmesine izin verir
+            }
+        }
+
+        function subscribe() {
+            Swal.fire({
+                title: "Abone Olma İşlemi Başarılı",
+                text: "Abone Olduğunuz için Teşekkürler!",
+                icon: "success",
+                showCancelButton: false,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Tamam",
+                cancelButtonText: "İptal!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/Blog/Index";
+                }
+            });
+        }
+    </script>
+
 
 </body>
 </html>

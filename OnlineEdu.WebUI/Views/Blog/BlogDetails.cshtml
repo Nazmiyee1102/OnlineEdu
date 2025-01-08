@@ -50,7 +50,6 @@
                         <div class="col-sm-4 text-center my-2 my-sm-0">
                             <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                         </div>
-                        <h4>@Model.Writer.FirstName @Model.Writer.LastName Sosyal Medya Hesapları</h4>
                         <ul class="social-icons">
                             @foreach (var item in Model.Writer.TeacherSocials)
                             {
@@ -107,8 +106,7 @@
                                 <h4>@Model.Writer.FirstName @Model.Writer.LastName</h4>
                             </a>
                             <p>
-                                Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                                our dominion twon Second divided from
+                               @Model.Writer.Email
                             </p>
                         </div>
                     </div>
