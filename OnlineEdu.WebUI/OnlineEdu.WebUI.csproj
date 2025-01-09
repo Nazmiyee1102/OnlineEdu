@@ -13,6 +13,7 @@
     <Folder Include="Areas\Student\Models\" />
     <Folder Include="Areas\Teacher\Data\" />
     <Folder Include="Areas\Teacher\Models\" />
+    <Folder Include="Views\Shared\Components\NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>

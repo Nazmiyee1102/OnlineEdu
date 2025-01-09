@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace OnlineEdu.WebUI.ViewComponents.Blog
+namespace OnlineEdu.WebUI.ViewComponents.UILayout
 {
-    public class _BlogSubscribe : ViewComponent
+    public class _LayoutSubscribeComponent : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

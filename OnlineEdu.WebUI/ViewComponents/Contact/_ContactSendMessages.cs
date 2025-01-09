@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace OnlineEdu.WebUI.ViewComponents.Blog
+namespace OnlineEdu.WebUI.ViewComponents.Contact
 {
-    public class _BlogSubscribe : ViewComponent
+    public class _ContactSendMessages : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

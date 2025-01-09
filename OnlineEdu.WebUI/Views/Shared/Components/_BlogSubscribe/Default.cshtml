@@ -2,49 +2,44 @@
 
 <aside class="single_sidebar_widget newsletter_widget">
     <h4 class="widget_title" style="color: #2d2d2d;">Abone Bülteni</h4>
-    <form asp-action="Subscribe" asp-controller="Blog" onsubmit="return validateForm()">
+    <form method="post" asp-action="Subscribe" asp-controller="Blog">
         <div class="form-group">
-            <input type="email" name="Email" id="email" class="form-control" onfocus="this.placeholder = ''"
-                   onblur="this.placeholder = 'Emailinizi Giriniz'" placeholder='Emailinizi Giriniz' required>
+            <input type="email" name="Email" class="form-control" onfocus="this.placeholder = ''"
+                   onblur="this.placeholder = 'Emailinizi Yazın'" placeholder='Emailinizi Yazın' required>
         </div>
-        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">
+        <button onclick="subscribe()" class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                type="submit">
             Abone Ol
         </button>
     </form>
+
+
 </aside>
 
+
 <script>
-    function validateForm() {
-        var email = document.getElementById("email").value;
-        if (email === "") {
-            Swal.fire({
-                title: "Hata",
-                text: "Lütfen email adresinizi giriniz.",
-                icon: "error",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "Tamam"
-            });
-            return false; // Formun submit edilmesini engeller
-        } else {
-            subscribe();
-            return true; // Formun submit edilmesine izin verir
-        }
-    }
 
     function subscribe() {
+
+
+
         Swal.fire({
             title: "Abone Olma İşlemi Başarılı",
-            text: "Abone Olduğunuz için Teşekkürler!",
+            text: "Abone olduğunuz için teşekkürler",
             icon: "success",
             showCancelButton: false,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Tamam",
-            cancelButtonText: "İptal!"
+            cancelButtonText: "İptal"
         }).then((result) => {
             if (result.isConfirmed) {
+
                 window.location.href = "/Blog/Index";
+
             }
         });
+
     }
+
 </script>
