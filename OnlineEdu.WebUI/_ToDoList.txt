@@ -1,11 +1,4 @@
 
------ UI -----
-
-- Ýletiþim sayfasý
-- Access denied sayfasý
-- 404 sayfasý
-
-
 ----- Admin -----
 
 - Dashboard sayfasý
