@@ -24,6 +24,7 @@ namespace OnlineEdu.DTO.DTOs.CourseDtos
 
         public bool IsShown { get; set; }
 
+        public AppUser AppUser { get; set; }    
         public int AppUserId { get; set; }
     }
 }

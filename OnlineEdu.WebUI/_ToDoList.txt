@@ -2,14 +2,6 @@
 ----- Admin -----
 
 - Dashboard sayfasý
-- Aboneler sayfasý
-- Kullanýcýlar kýsmýnda kullanýcýlara ait rolleri görüntüleme
-- Siteye git alaný eklenecek
-- Çýkýþ yap eklenecek
-- Tüm kullanýcýlar yanýsýra öðrenciler ve eðitmenler listeleme
-- Kurslar kýsmýnda eðitmen ismi getirme 
-
-
 
 ---- Teacher ----
 

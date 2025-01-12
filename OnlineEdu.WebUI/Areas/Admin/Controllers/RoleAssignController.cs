@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.UserDtos;
+using OnlineEdu.WebUI.Models;
 using OnlineEdu.WebUI.Services.UserServices;
 
-namespace OnlineEdu.WebUI.Areas.Admin.Controllers
-{
+
     [Authorize(Roles = "Admin")]
     [Area("Admin")]
 
@@ -17,7 +17,15 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var values = await userService.GetAllUserAsync();
-            return View(values);
+            var userList = (from user in values
+                            select new UserViewModel
+                            {
+                                UserViewModelId = user.Id,
+                                UserName = user.UserName,
+                                NameSurname = user.FirstName + " " + user.LastName,
+                                Roles =  userManager.GetRolesAsync(user).Result.ToList(),
+                            }).ToList();
+            return View(userList);
         }
 
         [HttpGet]
@@ -68,4 +76,4 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
     }
-}
+

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.CourseCategoryDtos;
 
 namespace OnlineEdu.WebUI.DTOs.CourseDtos
@@ -23,6 +24,7 @@ namespace OnlineEdu.WebUI.DTOs.CourseDtos
 
         public bool IsShown { get; set; }
 
+        public AppUser AppUser { get; set; }
         public int AppUserId { get; set; }
     }
 }
