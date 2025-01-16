@@ -7,13 +7,11 @@ namespace OnlineEdu.WebUI.ViewComponents.Home
     public class _HomeCounterComponent: ViewComponent
     {
         private readonly HttpClient _client;
-        private readonly IUserService _userService;
 
 
-        public _HomeCounterComponent(IHttpClientFactory clientFactory, IUserService userService)
+        public _HomeCounterComponent(IHttpClientFactory clientFactory)
         {
             _client = clientFactory.CreateClient("EduClient");
-            _userService = userService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()

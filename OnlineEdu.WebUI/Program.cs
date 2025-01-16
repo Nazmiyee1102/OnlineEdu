@@ -1,24 +1,15 @@
-using FluentValidation;
-using Microsoft.EntityFrameworkCore;
-using OnlineEdu.Entity.Entities;
-using OnlineEdu.WebUI.Validators;
-using OnlineEdu.WebUI.Areas.Admin.Controllers;
-using System.Reflection;
-using OnlineEdu.DataAccess.Context;
-using OnlineEdu.WebUI.Services.UserServices;
-using OnlineEdu.WebUI.Services.RoleServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using OnlineEdu.WebUI.Services.TokenServices;
+using OnlineEdu.WebUI.Services.UserServices;
 using System.Net.Http.Headers;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddHttpContextAccessor();
 
@@ -42,6 +33,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
     opt.Cookie.HttpOnly = true;
     opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     opt.Cookie.Name = "OnlineEduJwt";
+    opt.SlidingExpiration = true; //logine sürekli istek atmayý engeller
 });
 
 

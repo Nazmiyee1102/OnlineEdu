@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OnlineEdu.WebUI.DTOs.CourseDtos;
-using OnlineEdu.WebUI.Helpers;
 
 namespace OnlineEdu.WebUI.Controllers
 {

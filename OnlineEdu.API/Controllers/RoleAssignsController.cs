@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.SharePoint.Client;
 using OnlineEdu.Business.Abstract;
 using OnlineEdu.DTO.DTOs.UserDtos;
 using OnlineEdu.Entity.Entities;
@@ -12,7 +10,7 @@ namespace OnlineEdu.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoleAssignsController(IUserService userService, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, IHttpContextAccessor _contextAccessor) : ControllerBase
+    public class RoleAssignsController(IUserService userService, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager) : ControllerBase
     {
         
         public async Task<IActionResult> Index()
@@ -44,7 +42,7 @@ namespace OnlineEdu.API.Controllers
             foreach (var role in roles)
             {
                 var assignRole = new AssignRoleDto();
-
+                assignRole.UserId = user.Id;
                 assignRole.RoleId = role.Id;
                 assignRole.RoleName = role.Name;
                 assignRole.RoleExist = userRoles.Contains(role.Name);
@@ -57,7 +55,7 @@ namespace OnlineEdu.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AssignRole(List<AssignRoleDto> assignRoleList)
         {
-            Int128 userId = int.Parse(_contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userId = assignRoleList.Select(x => x.UserId).FirstOrDefault();
 
             var user = await userService.GetUserByIdAsync(userId);
 

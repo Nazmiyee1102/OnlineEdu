@@ -37,9 +37,4 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\OnlineEdu.DataAccesss\OnlineEdu.DataAccess.csproj" />
-    <ProjectReference Include="..\OnlineEdu.Entity\OnlineEdu.Entity.csproj" />
-  </ItemGroup>
-
 </Project>
