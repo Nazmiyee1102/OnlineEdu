@@ -5,13 +5,16 @@ using OnlineEdu.Business.Abstract;
 using OnlineEdu.DTO.DTOs.AboutDtos;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.DTO.DTOs.BlogCategoryDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineEdu.API.Controllers
 {
+    [Authorize(Roles = "Admin, Teacher")]
     [Route("api/[controller]")]
     [ApiController]
     public class BlogCategoriesController(IBlogCategoryService _blogCategoryService, IMapper _mapper) : ControllerBase
     {
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Get()
         {

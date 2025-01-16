@@ -18,6 +18,6 @@ namespace OnlineEdu.Entity.Entities
 
         public bool IsShown { get; set; }
 
-        public List<Course> Courses { get; set; }
+        public virtual List<Course> Courses { get; set; }
     }
 }

@@ -43,5 +43,7 @@ namespace OnlineEdu.DataAccess.Context
 
         public DbSet<TeacherSocial> TeacherSocials { get; set; }
 
+        public DbSet<CourseVideo> CourseVideos { get; set; }
+
     }
 }

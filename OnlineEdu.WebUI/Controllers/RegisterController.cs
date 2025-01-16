@@ -1,11 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using OnlineEdu.WebUI.DTOs.UserDtos;
+using OnlineEdu.WebUI.Helpers;
 using OnlineEdu.WebUI.Services.UserServices;
 
 namespace OnlineEdu.WebUI.Controllers
 {
-    public class RegisterController(IUserService userService) : Controller
+    public class RegisterController : Controller
     {
+        private readonly HttpClient _client;
+
+        public RegisterController(IHttpClientFactory clientFactory)
+        {
+            _client = clientFactory.CreateClient("EduClient");
+        }
         public IActionResult Signup()
         {
             return View();
@@ -14,14 +22,23 @@ namespace OnlineEdu.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Signup(UserRegisterDto userRegisterDto)
         {
-            var result = await userService.CreateUserAsync(userRegisterDto);
-            if (!result.Succeeded || !ModelState.IsValid)
+            var result = await _client.PostAsJsonAsync("users/register", userRegisterDto);
+
+            if (ModelState.IsValid)
             {
-                foreach (var item in result.Errors)
+                return View(userRegisterDto);
+            }
+
+            if (!result.IsSuccessStatusCode)
+            {
+
+                var errors = await result.Content.ReadFromJsonAsync<List<RegisterResponseDto>>();
+
+                foreach (var item in errors)
                 {
-                    ModelState.AddModelError("",item.Description);
+                    ModelState.AddModelError("", item.Description);
                 }
-                return View();
+                return View(userRegisterDto);
             }
             return RedirectToAction("SignIn","Login");
         }

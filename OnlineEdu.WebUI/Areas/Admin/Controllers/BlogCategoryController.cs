@@ -12,8 +12,12 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 
     public class BlogCategoryController : Controller
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
 
+        public BlogCategoryController(IHttpClientFactory clientFactory)
+        {
+            _client = clientFactory.CreateClient("EduClient");
+        }
         public async Task<IActionResult> Index()
         {
             var values = await _client.GetFromJsonAsync<List<ResultBlogCategoryDto>>("blogCategories");

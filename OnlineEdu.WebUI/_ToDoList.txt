@@ -6,18 +6,9 @@
 ---- Teacher ----
 
 - Dashboard tasarýmý
-- Sidebar' a social media alaný eklenecek
 - Profil bilgileri kýsmý
-- Çýkýþ yap
-- Siteye git
-
-
 
 ---- Student ----
 
 - Dashboard tasarýmý yapýlacak
 - Profil bilgileri sayfasý
-- CourseVideo entity eklenip api endpointleri hazýrlanacak
-- Kurslara ait videolarýn listelenmesi
-- Çýkýþ yap
-- Siteye git

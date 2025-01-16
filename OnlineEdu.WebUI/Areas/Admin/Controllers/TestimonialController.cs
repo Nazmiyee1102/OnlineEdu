@@ -10,7 +10,12 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 
     public class TestimonialController : Controller
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
+
+        public TestimonialController(IHttpClientFactory clientFactory)
+        {
+            _client = clientFactory.CreateClient("EduClient");
+        }
         public async Task<IActionResult> Index()
         {
             var values = await _client.GetFromJsonAsync<List<ResultTestimonialDto>>("Testimonials");

@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration.UserSecrets;
+using Microsoft.Identity.Client;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.CourseCategoryDtos;
 using OnlineEdu.WebUI.DTOs.CourseDtos;
+using OnlineEdu.WebUI.DTOs.CourseVideoDtos;
 using OnlineEdu.WebUI.Helpers;
+using OnlineEdu.WebUI.Services.TokenServices;
 
 namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
 {
@@ -15,21 +18,24 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
 
     public class MyCourseController : Controller
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
+        private readonly ITokenService _tokenService;
 
-        public MyCourseController(UserManager<AppUser> userManager)
+        public MyCourseController(IHttpClientFactory clientFactory, ITokenService tokenService = null)
         {
-            _userManager = userManager;
+            _client = clientFactory.CreateClient("EduClient");
+            _tokenService = tokenService;
         }
 
-        private readonly UserManager<AppUser> _userManager;
+     
+
 
 
         public async Task<IActionResult> Index()
         {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var userId =  _tokenService.GetUserId;
 
-            var values = await _client.GetFromJsonAsync<List<ResultCourseDto>>("courses/GetCoursesByTeacherId/" + user.Id);
+            var values = await _client.GetFromJsonAsync<List<ResultCourseDto>>("courses/GetCoursesByTeacherId/" + userId);
             return View(values);
         }
 
@@ -50,9 +56,8 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCourse(CreateCourseDto createCourseDto)
         {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
-
-            createCourseDto.AppUserId = user.Id;
+            var userId = _tokenService.GetUserId;
+            createCourseDto.AppUserId = userId;
             createCourseDto.IsShown = false;
             await _client.PostAsJsonAsync("courses", createCourseDto);
             return RedirectToAction("Index");
@@ -83,9 +88,35 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCourse(UpdateCourseDto updateCourseDto)
         {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            updateCourseDto.AppUserId = user.Id;
+            var userId = _tokenService.GetUserId; updateCourseDto.AppUserId = userId;
             await _client.PutAsJsonAsync("courses", updateCourseDto);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> CourseVideos(int id)
+        {
+            var values = await _client.GetFromJsonAsync<List<ResultCourseVideoDto>>("courseVideos/GetCourseVideosByCourseId/" + id);
+
+            TempData["courseId"] = id;
+
+            ViewBag.courseName = values.Select(x => x.Course.CourseName).FirstOrDefault();
+            return View(values);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateVideo()
+        {
+            var courseId = (int)TempData["courseId"];
+            var course = await _client.GetFromJsonAsync<ResultCourseDto>("courses/" + courseId);
+            ViewBag.courseName = course.CourseName;
+            ViewBag.courseId = course.CourseId;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateVideo(CreateCourseVideoDto createCourseVideoDto)
+        {
+            await _client.PostAsJsonAsync("courseVideos", createCourseVideoDto);
             return RedirectToAction("Index");
         }
     }

@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineEdu.Business.Abstract;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.DTO.DTOs.MessageDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineEdu.API.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class MessagesController(IGenericService<Message> _messageService, IMapper _mapper) : ControllerBase
@@ -32,6 +34,7 @@ namespace OnlineEdu.API.Controllers
             return Ok("Mesaj  Silindi");
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Create(CreateMessageDto createMessageDto)
         {

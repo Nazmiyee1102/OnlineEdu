@@ -14,8 +14,8 @@ namespace OnlineEdu.WebUI.DTOs.UserDtos
 
         public string Password { get; set; }
 
+        [Compare("Password", ErrorMessage = "Şifreler Uyuşmuyor")]
 
-        [Compare("Password", ErrorMessage = "Şifreler birbiriyle uyumlu değil")]
         public string ConfirmPassword { get; set; }
     }
 }
